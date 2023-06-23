@@ -1,21 +1,22 @@
-
-# 现代Fortran编程的工程规范 
+# 现代Fortran编程的工程规范
 
 ---
-使用模块（module）来组织代码，避免使用全局变量和共用体（common block）。
-使用隐式无（implicit none）来声明变量类型和属性，避免使用隐式类型转换。
-使用意义明确的变量名和注释来提高代码可读性。
-使用子程序（subroutine）和函数（function）来封装功能，避免使用goto语句。
-使用接口（interface）来定义子程序和函数的参数类型和数量，避免使用隐式接口。
-使用分配（allocatable）数组来动态分配内存，避免使用指针（pointer）数组或静态数组。
-使用派生类型（derived type）来定义复杂的数据结构，避免使用结构体（structure）或记录体（record）。
-使用泛型过程（generic procedure）来实现多态性，避免使用重载操作符或重载函数。
-使用类（class）和扩展类型（extended type）来实现继承和动态绑定，避免使用抽象接口或抽象派生类型。
+
+- 使用模块（module）来组织代码，避免使用全局变量和共用体（common block）。
+- 使用隐式无（implicit none）来声明变量类型和属性，避免使用隐式类型转换。
+- 使用意义明确的变量名和注释来提高代码可读性。
+- 使用子程序（subroutine）和函数（function）来封装功能，避免使用goto语句。
+- 使用接口（interface）来定义子程序和函数的参数类型和数量，避免使用隐式接口。
+- 使用分配（allocatable）数组来动态分配内存，避免使用指针（pointer）数组或静态数组。
+- 使用派生类型（derived type）来定义复杂的数据结构，避免使用结构体（structure）或记录体（record）。
+- 使用泛型过程（generic procedure）来实现多态性，避免使用重载操作符或重载函数。
+- 使用类（class）和扩展类型（extended type）来实现继承和动态绑定，避免使用抽象接口或抽象派生类型。
+
 ---
 
 ## 概述
 
-根据网上的一些文章 ，现代Fortran编程的工程规范可以包括以下几个方面
+现代Fortran编程的工程规范可以包括以下几个方面
 
 - 使用模块化和封装的思想，将程序分为不同的模块和子程序，避免使用全局变量和共用体。
 - 使用隐式无类型声明和显式接口，避免使用隐式类型转换和隐含接口。 
@@ -25,11 +26,11 @@
 - 使用函数式编程的特性，如纯函数、递归、高阶函数等，提高代码的简洁性和可读性。 
 - 遵循一些编码风格和规范，如命名规则、缩进对齐、注释说明等，提高代码的可维护性。 
 
-## 示例代码 
+## 示例代码
 
-以下是一些现代Fortran编程的示例代码： 
+以下是一些Fortran编程的示例代码：
 
-### 使用模块化和封装的思想 
+### 使用模块化和封装的思想
 
 ```fortran
 ! 定义一个数学模块 
@@ -56,7 +57,8 @@ end program test
 
 ```fortran
 ! 定义一个函数模块 
-module func_module contains 
+module func_module 
+contains 
 ! 定义一个求阶乘的函数，并使用显式接口声明输入输出类型 
 function factorial(n) result(f) 
 implicit none ! 隐式无类型声明 
@@ -88,7 +90,8 @@ end program test
 program test 
 implicit none 
 integer, pointer :: p(:,:) ! 声明一个二维整数指针数组 
-integer :: i,j,n,m n = 3 ; m = 4 ! 给定数组大小 
+integer :: i,j,n,m 
+n = 3 ; m = 4 ! 给定数组大小 
 allocate(p(n,m)) ! 动态分配内存空间 
 do i=1,n ! 给数组赋值 
 do j=1,m 
@@ -101,6 +104,7 @@ print *, 'p(',i,',',j,')=', p(i,j)
 end do 
 end do 
 deallocate(p) ! 释放内存空间
+end program
 ```
 
 ### 使用自定义数据类型和派生类型
